@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Vinay C G — Data, databases, cloud and AI. Notes, experience and practical learning at Datartha." />
+  <meta name="theme-color" content="#f7f7f4" />
+  <title>Vinay C G — Datartha</title>
+
+  <style>
+    :root {
+      --bg: #f7f7f4;
+      --surface: #ffffff;
+      --text: #171717;
+      --muted: #666b73;
+      --line: #dedfd9;
+      --soft: #efefe9;
+      --accent: #2457d6;
+      --accent-soft: #edf2ff;
+      --code: #183153;
+      --max: 980px;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .mono {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 247, 244, .92);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      min-height: 66px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: -.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand .mark {
+      color: var(--accent);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: .95rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      font-size: .92rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    main {
+      padding: 0 0 60px;
+    }
+
+    .hero {
+      padding: 92px 0 72px;
+      display: grid;
+      grid-template-columns: 1.45fr .75fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .09em;
+      font: 650 .78rem/1.2 "SFMono-Regular", Consolas, monospace;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: -.035em;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 700px;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      line-height: 1.02;
+    }
+
+    .hero .intro {
+      margin: 26px 0 0;
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .hero .intro strong {
+      color: var(--text);
+      font-weight: 650;
+    }
+
+    .profile-note {
+      border-left: 3px solid var(--accent);
+      padding-left: 18px;
+      color: var(--muted);
+      margin-top: 7px;
+    }
+
+    .profile-note .label {
+      color: var(--text);
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .profile-note ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .profile-note li + li {
+      margin-top: 8px;
+    }
+
+    section {
+      padding: 70px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      color: var(--accent);
+      font: 650 .78rem/1.3 "SFMono-Regular", Consolas, monospace;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      padding-top: 8px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.1rem);
+      line-height: 1.08;
+    }
+
+    .lead {
+      margin: 14px 0 0;
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .timeline {
+      border-top: 1px solid var(--line);
+    }
+
+    .role {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 28px;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .role time {
+      color: var(--muted);
+      font: 600 .82rem/1.5 "SFMono-Regular", Consolas, monospace;
+    }
+
+    .role h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .role p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .role ul {
+      margin: 16px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .role li + li {
+      margin-top: 7px;
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .topic {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .topic .code {
+      font: 600 .78rem/1.3 "SFMono-Regular", Consolas, monospace;
+      color: var(--accent);
+    }
+
+    .topic h3 {
+      margin: 15px 0 8px;
+      font-size: 1.2rem;
+    }
+
+    .topic p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .writing-list {
+      border-top: 1px solid var(--line);
+    }
+
+    .post {
+      display: grid;
+      grid-template-columns: 150px 1fr auto;
+      gap: 24px;
+      align-items: baseline;
+      padding: 21px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .post .date {
+      color: var(--muted);
+      font: .8rem "SFMono-Regular", Consolas, monospace;
+    }
+
+    .post .title {
+      font-weight: 650;
+    }
+
+    .post .status {
+      color: var(--accent);
+      font: 600 .76rem "SFMono-Regular", Consolas, monospace;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .principle {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+    }
+
+    .principle p {
+      margin: 0;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      line-height: 1.35;
+      letter-spacing: -.025em;
+    }
+
+    .principle small {
+      display: block;
+      margin-top: 14px;
+      color: var(--muted);
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0 44px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .accent-link {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    @media (max-width: 760px) {
+      .hero,
+      .section-head,
+      .role {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 66px;
+        gap: 34px;
+      }
+
+      .topic-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .post {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      section {
+        padding: 58px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="#top" class="brand">
+        <span class="mark">&gt;_</span>
+        <span>datartha</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#topics">Topics</a>
+        <a href="#writing">Writing</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="wrap hero">
+      <div>
+        <div class="eyebrow">Vinay C G · Data / Databases / AI</div>
+        <h1>I build, study and teach data systems.</h1>
+
+        <p class="intro">
+          I have spent more than 18 years working across
+          <strong>databases, data engineering, cloud platforms and AI</strong>.
+          Datartha is where I document what I have learned, explain difficult ideas
+          simply, and connect modern AI back to the data systems it depends on.
+        </p>
+      </div>
+
+      <aside class="profile-note">
+        <div class="label">Currently exploring</div>
+        <ul>
+          <li>Generative AI & LLM systems</li>
+          <li>Agentic AI & MCP</li>
+          <li>RAG and AI-ready data platforms</li>
+          <li>Open-weight & self-hosted models</li>
+          <li>Practical AI for data professionals</li>
+        </ul>
+      </aside>
+    </div>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">01 / About</div>
+          <div>
+            <h2>Technology makes more sense when you understand what sits underneath it.</h2>
+            <p class="lead">
+              My career started with databases, expanded into large-scale data engineering
+              and cloud architecture, and today includes Generative AI and agentic systems.
+              That progression shapes how I learn and how I teach: start with fundamentals,
+              understand the architecture, then work upward to the tools.
+            </p>
+          </div>
+        </div>
+
+        <div class="principle">
+          <p>
+            “My goal is not to make technology sound impressive.
+            It is to make it understandable.”
+          </p>
+          <small class="mono">— the idea behind datartha</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">02 / Experience</div>
+          <div>
+            <h2>From database internals to AI systems.</h2>
+            <p class="lead">
+              The work has changed over the years, but the thread has stayed the same:
+              understanding how systems store, process, move and use data.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline">
+          <article class="role">
+            <time>2023 → NOW</time>
+            <div>
+              <h3>Data & AI</h3>
+              <p>
+                Working at the intersection of modern data platforms and AI systems.
+              </p>
+              <ul>
+                <li>Generative AI, LLMs and agentic AI</li>
+                <li>RAG, vector search, tools, APIs and MCP</li>
+                <li>AI-ready data architectures and modern data platforms</li>
+                <li>Cloud-based Data & AI solutions across AWS, Azure and GCP</li>
+                <li>Open-weight, self-hosted and API-based model evaluation</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role">
+            <time>2015 → 2022</time>
+            <div>
+              <h3>Data Engineering & Cloud</h3>
+              <p>
+                Designed and worked with large-scale data platforms, distributed processing
+                systems and cloud architectures.
+              </p>
+              <ul>
+                <li>Multi-terabyte data warehouses and data lakes</li>
+                <li>Apache Spark and distributed data processing</li>
+                <li>Data pipelines, platform architecture and analytics systems</li>
+                <li>AWS, Microsoft Azure and Google Cloud Platform</li>
+                <li>Relational, NoSQL and cloud-native data technologies</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="role">
+            <time>2009 → 2015</time>
+            <div>
+              <h3>Database Engineering & Administration</h3>
+              <p>
+                Built the database foundation that everything else in my career grew from.
+              </p>
+              <ul>
+                <li>Microsoft SQL Server, PostgreSQL and MongoDB</li>
+                <li>Database administration and production operations</li>
+                <li>Performance tuning and query optimization</li>
+                <li>High availability, backup, recovery and reliability</li>
+                <li>Troubleshooting business-critical database workloads</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="topics">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">03 / Topics</div>
+          <div>
+            <h2>What I spend time learning and teaching.</h2>
+            <p class="lead">
+              Not a list of every technology I have used — just the areas I care about
+              enough to keep exploring and explaining.
+            </p>
+          </div>
+        </div>
+
+        <div class="topic-grid">
+          <article class="topic">
+            <div class="code">data.engineering</div>
+            <h3>Data systems</h3>
+            <p>Architecture, pipelines, warehouses, lakes, Spark and distributed processing.</p>
+          </article>
+
+          <article class="topic">
+            <div class="code">database.internals</div>
+            <h3>Databases</h3>
+            <p>SQL, PostgreSQL, SQL Server, MongoDB, performance and reliability.</p>
+          </article>
+
+          <article class="topic">
+            <div class="code">cloud.platforms</div>
+            <h3>Cloud</h3>
+            <p>AWS, Azure and GCP from the perspective of data and platform architecture.</p>
+          </article>
+
+          <article class="topic">
+            <div class="code">ai.systems</div>
+            <h3>AI</h3>
+            <p>LLMs, RAG, agents, MCP, tools, model access and practical AI architectures.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="writing">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">04 / Writing</div>
+          <div>
+            <h2>Notes & essays.</h2>
+            <p class="lead">
+              This section is intentionally simple for now. Over time, Datartha will become
+              a collection of practical notes on databases, data engineering and AI.
+            </p>
+          </div>
+        </div>
+
+        <div class="writing-list">
+          <div class="post">
+            <div class="date">Coming soon</div>
+            <div class="title">How an LLM fits into a real AI system</div>
+            <div class="status">Draft</div>
+          </div>
+
+          <div class="post">
+            <div class="date">Coming soon</div>
+            <div class="title">What database performance taught me about AI engineering</div>
+            <div class="status">Idea</div>
+          </div>
+
+          <div class="post">
+            <div class="date">Coming soon</div>
+            <div class="title">RAG, tools, MCP and fine-tuning: what changes what?</div>
+            <div class="status">Idea</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>
+        <span class="mono">&gt;_</span> datartha.com
+      </div>
+      <div>
+        Built simply. Hosted on GitHub Pages.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
