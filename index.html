@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Vinay C G — Data, databases, cloud and AI. Notes, experience and practical learning at Datartha." />
   <meta name="theme-color" content="#f7f7f4" />
+  <meta property="og:title" content="Vinay C G — Datartha" />
+  <meta property="og:description" content="Making modern data and AI systems understandable from first principles." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://datartha.com/" />
   <title>Vinay C G — Datartha</title>
 
   <style>
@@ -94,12 +98,21 @@
       color: var(--text);
     }
 
+    .nav-links a:focus-visible,
+    .button:focus-visible,
+    .post-link:focus-visible,
+    .contact-link:focus-visible {
+      outline: 3px solid var(--accent-soft);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
     main {
       padding: 0 0 60px;
     }
 
     .hero {
-      padding: 92px 0 72px;
+      padding: 58px 0 64px;
       display: grid;
       grid-template-columns: 1.45fr .75fr;
       gap: 64px;
@@ -116,7 +129,7 @@
 
     h1, h2, h3 {
       font-family: "Avenir Next", Avenir, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      letter-spacing: -.025em;
+      letter-spacing: -.01em;
       font-weight: 650;
     }
 
@@ -137,6 +150,37 @@
     .hero .intro strong {
       color: var(--text);
       font-weight: 650;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border: 1px solid var(--text);
+      border-radius: 999px;
+      font-size: .9rem;
+      font-weight: 650;
+      transition: background .15s ease, color .15s ease, border-color .15s ease;
+    }
+
+    .button.primary {
+      background: var(--text);
+      color: var(--surface);
+    }
+
+    .button:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
     }
 
     .profile-note {
@@ -236,7 +280,7 @@
 
     .topic-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 14px;
     }
 
@@ -261,6 +305,15 @@
       margin: 0;
       color: var(--muted);
       font-size: .96rem;
+    }
+
+    .topic ul {
+      margin: 16px 0 0;
+      padding: 16px 0 0;
+      border-top: 1px solid var(--line);
+      list-style: none;
+      color: var(--muted);
+      font: .8rem/1.7 "SFMono-Regular", Consolas, monospace;
     }
 
     .writing-list {
@@ -290,6 +343,58 @@
       font: 600 .76rem "SFMono-Regular", Consolas, monospace;
       text-transform: uppercase;
       letter-spacing: .06em;
+    }
+
+    .post-link {
+      transition: color .15s ease;
+    }
+
+    .post-link:hover {
+      color: var(--accent);
+    }
+
+    .post-link::after {
+      content: " →";
+      color: var(--accent);
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 48px;
+      align-items: end;
+      background: var(--code);
+      color: white;
+      border-radius: var(--radius);
+      padding: clamp(28px, 5vw, 48px);
+    }
+
+    .contact-panel h2 {
+      margin: 0;
+    }
+
+    .contact-panel p {
+      margin: 16px 0 0;
+      color: #cbd5e1;
+      max-width: 620px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .contact-link {
+      color: white;
+      border-bottom: 1px solid rgba(255,255,255,.35);
+      padding-bottom: 3px;
+      font-weight: 650;
+    }
+
+    .contact-link:hover {
+      border-color: white;
     }
 
     .principle {
@@ -334,12 +439,13 @@
     @media (max-width: 760px) {
       .hero,
       .section-head,
-      .role {
+      .role,
+      .contact-panel {
         grid-template-columns: 1fr;
       }
 
       .hero {
-        padding-top: 66px;
+        padding-top: 42px;
         gap: 34px;
       }
 
@@ -352,8 +458,19 @@
         gap: 6px;
       }
 
+      .nav {
+        min-height: auto;
+        padding: 14px 0 12px;
+        flex-wrap: wrap;
+        gap: 8px 20px;
+      }
+
       .nav-links {
-        display: none;
+        width: 100%;
+        gap: 16px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        font-size: .8rem;
       }
 
       section {
@@ -372,10 +489,11 @@
       </a>
 
       <nav class="nav-links" aria-label="Primary">
+        <a href="#blog">Blog</a>
         <a href="#about">About</a>
-        <a href="#experience">Experience</a>
-        <a href="#topics">Topics</a>
-        <a href="#writing">Writing</a>
+        <a href="#experience">Journey</a>
+        <a href="#topics">Systems</a>
+        <a href="#connect">Connect</a>
       </nav>
     </div>
   </header>
@@ -383,8 +501,7 @@
   <main id="top">
     <div class="wrap hero">
       <div>
-        <div class="eyebrow">Vinay C G · Data / Databases / AI</div>
-        <h1>I build, study and teach data systems.</h1>
+        <h1>I build and teach Data &amp; AI systems.</h1>
 
         <p class="intro">
           I have spent more than 18 years working across
@@ -392,24 +509,56 @@
           Datartha is where I document what I have learned, explain difficult ideas
           simply, and connect modern AI back to the data systems it depends on.
         </p>
+
+        <div class="hero-actions" aria-label="Connect with Vinay">
+          <a class="button primary" href="mailto:vinay.c.g.k@gmail.com">Start a conversation</a>
+          <a class="button" href="https://github.com/vinay-cg" target="_blank" rel="me noreferrer">GitHub</a>
+          <a class="button" href="https://www.linkedin.com/in/vinay-c-g/" target="_blank" rel="me noreferrer">LinkedIn</a>
+        </div>
       </div>
 
       <aside class="profile-note">
-        <div class="label">Currently exploring</div>
+        <div class="label">Experience</div>
         <ul>
-          <li>Generative AI & LLM systems</li>
-          <li>Agentic AI & MCP</li>
-          <li>RAG and AI-ready data platforms</li>
-          <li>Open-weight & self-hosted models</li>
-          <li>Practical AI for data professionals</li>
+          <li>Database architecture &amp; performance</li>
+          <li>Data engineering &amp; distributed systems</li>
+          <li>Cloud data platforms</li>
+          <li>Generative AI &amp; LLM systems</li>
+          <li>Agentic AI design</li>
+          <li>RAG, Multi Agents Orchestration &amp; MCP</li>
         </ul>
       </aside>
     </div>
 
+    <section id="blog">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">01 / Blog</div>
+          <div>
+            <h2>I write about data, databases and AI systems.</h2>
+            <p class="lead">
+              Practical notes and essays grounded in real-world experience with
+              database internals, data platforms and modern AI.
+            </p>
+          </div>
+        </div>
+
+        <div class="writing-list">
+          <div class="post">
+            <div class="date">16 SEP 2026</div>
+            <a class="title post-link" href="writing/database-performance-ai-engineering.html">
+              What database performance taught me about AI engineering
+            </a>
+            <div class="status">Essay · 4 min</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="about">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-kicker">01 / About</div>
+          <div class="section-kicker">02 / About</div>
           <div>
             <h2>Technology makes more sense when you understand what sits underneath it.</h2>
             <p class="lead">
@@ -426,7 +575,7 @@
             “My goal is not to make technology sound impressive.
             It is to make it understandable.”
           </p>
-          <small class="mono">— the idea behind datartha</small>
+          <small class="mono">Datartha: data + artha — meaning, purpose and understanding.</small>
         </div>
       </div>
     </section>
@@ -434,7 +583,7 @@
     <section id="experience">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-kicker">02 / Experience</div>
+          <div class="section-kicker">03 / Journey</div>
           <div>
             <h2>From database internals to AI systems.</h2>
             <p class="lead">
@@ -448,52 +597,43 @@
           <article class="role">
             <time>2023 → NOW</time>
             <div>
-              <h3>Data & AI</h3>
+              <h3>Data &amp; AI</h3>
               <p>
                 Working at the intersection of modern data platforms and AI systems.
               </p>
-              <ul>
-                <li>Generative AI, LLMs and agentic AI</li>
-                <li>RAG, vector search, tools, APIs and MCP</li>
-                <li>AI-ready data architectures and modern data platforms</li>
-                <li>Cloud-based Data & AI solutions across AWS, Azure and GCP</li>
-                <li>Open-weight, self-hosted and API-based model evaluation</li>
-              </ul>
+              <p>
+                Generative AI, RAG, agents and MCP—grounded in the data platforms,
+                evaluation practices and operational constraints that make them useful.
+              </p>
             </div>
           </article>
 
           <article class="role">
             <time>2015 → 2022</time>
             <div>
-              <h3>Data Engineering & Cloud</h3>
+              <h3>Data Engineering &amp; Cloud</h3>
               <p>
                 Designed and worked with large-scale data platforms, distributed processing
                 systems and cloud architectures.
               </p>
-              <ul>
-                <li>Multi-terabyte data warehouses and data lakes</li>
-                <li>Apache Spark and distributed data processing</li>
-                <li>Data pipelines, platform architecture and analytics systems</li>
-                <li>AWS, Microsoft Azure and Google Cloud Platform</li>
-                <li>Relational, NoSQL and cloud-native data technologies</li>
-              </ul>
+              <p>
+                Multi-terabyte warehouses, lakes, Spark pipelines and analytics platforms
+                across AWS, Azure and Google Cloud.
+              </p>
             </div>
           </article>
 
           <article class="role">
             <time>2009 → 2015</time>
             <div>
-              <h3>Database Engineering & Administration</h3>
+              <h3>Database Engineering &amp; Administration</h3>
               <p>
                 Built the database foundation that everything else in my career grew from.
               </p>
-              <ul>
-                <li>Microsoft SQL Server, PostgreSQL and MongoDB</li>
-                <li>Database administration and production operations</li>
-                <li>Performance tuning and query optimization</li>
-                <li>High availability, backup, recovery and reliability</li>
-                <li>Troubleshooting business-critical database workloads</li>
-              </ul>
+              <p>
+                Production operations, query optimization, high availability and recovery
+                for business-critical SQL Server, PostgreSQL and MongoDB workloads.
+              </p>
             </div>
           </article>
         </div>
@@ -503,74 +643,63 @@
     <section id="topics">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-kicker">03 / Topics</div>
+          <div class="section-kicker">04 / Systems</div>
           <div>
-            <h2>What I spend time learning and teaching.</h2>
+            <h2>One system, three connected layers.</h2>
             <p class="lead">
-              Not a list of every technology I have used — just the areas I care about
-              enough to keep exploring and explaining.
+              Modern AI is not a replacement for data engineering or database fundamentals.
+              It is another layer built on top of them.
             </p>
           </div>
         </div>
 
         <div class="topic-grid">
           <article class="topic">
-            <div class="code">data.engineering</div>
-            <h3>Data systems</h3>
-            <p>Architecture, pipelines, warehouses, lakes, Spark and distributed processing.</p>
+            <div class="code">03 / intelligence</div>
+            <h3>AI &amp; agentic systems</h3>
+            <p>Models become useful when retrieval, tools, evaluation and operational boundaries work together.</p>
+            <ul>
+              <li>LLMs · RAG · agents · MCP · evaluation</li>
+            </ul>
           </article>
 
           <article class="topic">
-            <div class="code">database.internals</div>
-            <h3>Databases</h3>
-            <p>SQL, PostgreSQL, SQL Server, MongoDB, performance and reliability.</p>
+            <div class="code">02 / movement</div>
+            <h3>Data platforms</h3>
+            <p>Reliable AI begins with data that can be moved, transformed, governed and understood.</p>
+            <ul>
+              <li>pipelines · Spark · lakes · warehouses · cloud</li>
+            </ul>
           </article>
 
           <article class="topic">
-            <div class="code">cloud.platforms</div>
-            <h3>Cloud</h3>
-            <p>AWS, Azure and GCP from the perspective of data and platform architecture.</p>
-          </article>
-
-          <article class="topic">
-            <div class="code">ai.systems</div>
-            <h3>AI</h3>
-            <p>LLMs, RAG, agents, MCP, tools, model access and practical AI architectures.</p>
+            <div class="code">01 / foundation</div>
+            <h3>Database fundamentals</h3>
+            <p>Performance, correctness and reliability still begin with how systems store and retrieve information.</p>
+            <ul>
+              <li>SQL · internals · tuning · availability · recovery</li>
+            </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="writing">
+    <section id="connect">
       <div class="wrap">
-        <div class="section-head">
-          <div class="section-kicker">04 / Writing</div>
+        <div class="contact-panel">
           <div>
-            <h2>Notes & essays.</h2>
-            <p class="lead">
-              This section is intentionally simple for now. Over time, Datartha will become
-              a collection of practical notes on databases, data engineering and AI.
+            <div class="eyebrow">Connect</div>
+            <h2>Let’s work together on data and AI.</h2>
+            <p>
+              Have a project you would like to collaborate on, or need an experienced
+              consultant for a data or AI initiative? Get in touch to discuss the
+              challenge and how I can help.
             </p>
           </div>
-        </div>
-
-        <div class="writing-list">
-          <div class="post">
-            <div class="date">Coming soon</div>
-            <div class="title">How an LLM fits into a real AI system</div>
-            <div class="status">Draft</div>
-          </div>
-
-          <div class="post">
-            <div class="date">Coming soon</div>
-            <div class="title">What database performance taught me about AI engineering</div>
-            <div class="status">Idea</div>
-          </div>
-
-          <div class="post">
-            <div class="date">Coming soon</div>
-            <div class="title">RAG, tools, MCP and fine-tuning: what changes what?</div>
-            <div class="status">Idea</div>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:vinay.c.g.k@gmail.com">vinay.c.g.k@gmail.com ↗</a>
+            <a class="contact-link" href="https://github.com/vinay-cg" target="_blank" rel="me noreferrer">github.com/vinay-cg ↗</a>
+            <a class="contact-link" href="https://www.linkedin.com/in/vinay-c-g/" target="_blank" rel="me noreferrer">linkedin.com/in/vinay-c-g ↗</a>
           </div>
         </div>
       </div>
@@ -583,7 +712,7 @@
         <span class="mono">&gt;_</span> datartha.com
       </div>
       <div>
-        Built simply. Hosted on GitHub Pages.
+        <a class="accent-link" href="https://github.com/vinay-cg/datartha.github.io" target="_blank" rel="noreferrer">Source on GitHub</a>
       </div>
     </div>
   </footer>
