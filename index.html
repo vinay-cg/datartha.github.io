@@ -3,13 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Vinay C G — Data, databases, cloud and AI. Notes, experience and practical learning at Datartha." />
+  <meta name="description" content="Vinay C G - Data, databases, cloud and AI. Notes, experience and practical learning at Datartha." />
   <meta name="theme-color" content="#f7f7f4" />
-  <meta property="og:title" content="Vinay C G — Datartha" />
+  <link rel="icon" type="image/png" href="assets/favicon-light.png" />
+  <link rel="apple-touch-icon" href="assets/favicon-light.png" />
+  <meta property="og:title" content="Vinay C G - Datartha" />
   <meta property="og:description" content="Making modern data and AI systems understandable from first principles." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://datartha.com/" />
-  <title>Vinay C G — Datartha</title>
+  <title>Vinay C G - Datartha</title>
 
   <style>
     :root {
@@ -81,10 +83,10 @@
       gap: 8px;
     }
 
-    .brand .mark {
-      color: var(--accent);
-      font-family: "SFMono-Regular", Consolas, monospace;
-      font-size: 1.08rem;
+    .brand-logo {
+      display: block;
+      width: 32px;
+      height: auto;
     }
 
     .nav-links {
@@ -125,6 +127,13 @@
       letter-spacing: .09em;
       font: 650 .98rem/1.3 "SFMono-Regular", Consolas, monospace;
       margin-bottom: 20px;
+    }
+
+    .hero-name {
+      color: var(--accent);
+      letter-spacing: .08em;
+      font: 650 .94rem/1.4 "SFMono-Regular", Consolas, monospace;
+      margin-bottom: 14px;
     }
 
     h1, h2, h3 {
@@ -241,79 +250,40 @@
       max-width: 700px;
     }
 
-    .timeline {
-      border-top: 1px solid var(--line);
+    #experience {
+      padding: 52px 0;
     }
 
-    .role {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 28px;
-      padding: 30px 0;
+    #experience .section-head {
+      margin-bottom: 24px;
+    }
+
+    .journey-summary {
+      margin: 0;
+      padding: 18px 0 18px 22px;
+      border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-    }
-
-    .role time {
-      color: var(--muted);
-      font: 600 .82rem/1.5 "SFMono-Regular", Consolas, monospace;
-    }
-
-    .role h3 {
-      margin: 0 0 10px;
-      font-size: 1.35rem;
-    }
-
-    .role p {
-      margin: 0;
       color: var(--muted);
     }
 
-    .role ul {
-      margin: 16px 0 0;
-      padding-left: 20px;
-      color: var(--muted);
+    .journey-summary li + li {
+      margin-top: 10px;
     }
 
-    .role li + li {
-      margin-top: 7px;
+    .journey-summary li::marker {
+      color: var(--text);
     }
 
-    .topic-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+    .journey-summary strong {
+      color: var(--text);
+      font-weight: 650;
     }
 
-    .topic {
-      background: var(--surface);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 22px;
-    }
-
-    .topic .code {
-      font: 600 .9rem/1.35 "SFMono-Regular", Consolas, monospace;
+    .journey-period {
       color: var(--accent);
-    }
-
-    .topic h3 {
-      margin: 15px 0 8px;
-      font-size: 1.2rem;
-    }
-
-    .topic p {
-      margin: 0;
-      color: var(--muted);
-      font-size: .96rem;
-    }
-
-    .topic ul {
-      margin: 16px 0 0;
-      padding: 16px 0 0;
-      border-top: 1px solid var(--line);
-      list-style: none;
-      color: var(--muted);
-      font: .8rem/1.7 "SFMono-Regular", Consolas, monospace;
+      font: 650 .78rem/1.5 "SFMono-Regular", Consolas, monospace;
+      letter-spacing: .03em;
+      white-space: nowrap;
     }
 
     .writing-list {
@@ -343,6 +313,27 @@
       font: 600 .76rem "SFMono-Regular", Consolas, monospace;
       text-transform: uppercase;
       letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .post-tag {
+      padding: 4px 7px;
+      background: var(--accent-soft);
+      border-radius: 999px;
+    }
+
+    .view-all {
+      display: inline-block;
+      margin-top: 20px;
+      color: var(--accent);
+      font-weight: 650;
+    }
+
+    .view-all:hover {
+      text-decoration: underline;
     }
 
     .post-link {
@@ -439,7 +430,6 @@
     @media (max-width: 760px) {
       .hero,
       .section-head,
-      .role,
       .contact-panel {
         grid-template-columns: 1fr;
       }
@@ -447,10 +437,6 @@
       .hero {
         padding-top: 42px;
         gap: 34px;
-      }
-
-      .topic-grid {
-        grid-template-columns: 1fr;
       }
 
       .post {
@@ -484,15 +470,14 @@
   <header>
     <div class="wrap nav">
       <a href="#top" class="brand">
-        <span class="mark">&gt;_</span>
+        <img class="brand-logo" src="assets/logo-mark.png" alt="" width="32" height="21" />
         <span>datartha</span>
       </a>
 
       <nav class="nav-links" aria-label="Primary">
-        <a href="#blog">Blog</a>
+        <a href="blog/index.html">Blog</a>
         <a href="#about">About</a>
         <a href="#experience">Journey</a>
-        <a href="#topics">Systems</a>
         <a href="#connect">Connect</a>
       </nav>
     </div>
@@ -501,6 +486,7 @@
   <main id="top">
     <div class="wrap hero">
       <div>
+        <div class="hero-name">Vinay C G</div>
         <h1>I build and teach Data &amp; AI systems.</h1>
 
         <p class="intro">
@@ -535,23 +521,33 @@
         <div class="section-head">
           <div class="section-kicker">01 / Blog</div>
           <div>
-            <h2>I write about data, databases and AI systems.</h2>
+            <h2>Recent writing on data, databases and AI systems.</h2>
             <p class="lead">
-              Practical notes and essays grounded in real-world experience with
-              database internals, data platforms and modern AI.
+              The latest practical notes and essays, grounded in real-world experience
+              with database internals, data platforms and modern AI.
             </p>
           </div>
         </div>
 
         <div class="writing-list">
           <div class="post">
-            <div class="date">16 SEP 2026</div>
-            <a class="title post-link" href="writing/database-performance-ai-engineering.html">
-              What database performance taught me about AI engineering
+            <div class="date">22 JAN 2026</div>
+            <a class="title post-link" href="writing/what-happens-when-you-ask-an-llm-part-2.html">
+              What happens when you ask an LLM a question? Part 2 - Prediction, generation and stopping
             </a>
-            <div class="status">Essay · 4 min</div>
+            <div class="status"><span class="post-tag">AI</span> Part 2 · 4 min</div>
+          </div>
+
+          <div class="post">
+            <div class="date">08 JAN 2026</div>
+            <a class="title post-link" href="writing/what-happens-when-you-ask-an-llm-part-1.html">
+              What happens when you ask an LLM a question? Part 1 - Context, tokens and attention
+            </a>
+            <div class="status"><span class="post-tag">AI</span> Part 1 · 4 min</div>
           </div>
         </div>
+
+        <a class="view-all" href="blog/index.html">View all blog entries →</a>
       </div>
     </section>
 
@@ -575,7 +571,7 @@
             “My goal is not to make technology sound impressive.
             It is to make it understandable.”
           </p>
-          <small class="mono">Datartha: data + artha — meaning, purpose and understanding.</small>
+          <small class="mono">Datartha: data + artha - meaning, purpose and understanding.</small>
         </div>
       </div>
     </section>
@@ -593,94 +589,23 @@
           </div>
         </div>
 
-        <div class="timeline">
-          <article class="role">
-            <time>2023 → NOW</time>
-            <div>
-              <h3>Data &amp; AI</h3>
-              <p>
-                Working at the intersection of modern data platforms and AI systems.
-              </p>
-              <p>
-                Generative AI, RAG, agents and MCP—grounded in the data platforms,
-                evaluation practices and operational constraints that make them useful.
-              </p>
-            </div>
-          </article>
-
-          <article class="role">
-            <time>2015 → 2022</time>
-            <div>
-              <h3>Data Engineering &amp; Cloud</h3>
-              <p>
-                Designed and worked with large-scale data platforms, distributed processing
-                systems and cloud architectures.
-              </p>
-              <p>
-                Multi-terabyte warehouses, lakes, Spark pipelines and analytics platforms
-                across AWS, Azure and Google Cloud.
-              </p>
-            </div>
-          </article>
-
-          <article class="role">
-            <time>2009 → 2015</time>
-            <div>
-              <h3>Database Engineering &amp; Administration</h3>
-              <p>
-                Built the database foundation that everything else in my career grew from.
-              </p>
-              <p>
-                Production operations, query optimization, high availability and recovery
-                for business-critical SQL Server, PostgreSQL and MongoDB workloads.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="topics">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="section-kicker">04 / Systems</div>
-          <div>
-            <h2>One system, three connected layers.</h2>
-            <p class="lead">
-              Modern AI is not a replacement for data engineering or database fundamentals.
-              It is another layer built on top of them.
-            </p>
-          </div>
-        </div>
-
-        <div class="topic-grid">
-          <article class="topic">
-            <div class="code">03 / intelligence</div>
-            <h3>AI &amp; agentic systems</h3>
-            <p>Models become useful when retrieval, tools, evaluation and operational boundaries work together.</p>
-            <ul>
-              <li>LLMs · RAG · agents · MCP · evaluation</li>
-            </ul>
-          </article>
-
-          <article class="topic">
-            <div class="code">02 / movement</div>
-            <h3>Data platforms</h3>
-            <p>Reliable AI begins with data that can be moved, transformed, governed and understood.</p>
-            <ul>
-              <li>pipelines · Spark · lakes · warehouses · cloud</li>
-            </ul>
-          </article>
-
-          <article class="topic">
-            <div class="code">01 / foundation</div>
-            <h3>Database fundamentals</h3>
-            <p>Performance, correctness and reliability still begin with how systems store and retrieve information.</p>
-            <ul>
-              <li>SQL · internals · tuning · availability · recovery</li>
-            </ul>
-          </article>
-        </div>
+        <ul class="journey-summary">
+          <li>
+            <strong><span class="journey-period">2023 → NOW</span> - Data &amp; AI.</strong>
+            Building practical generative AI, RAG, agent and MCP systems on reliable data
+            platforms, with a focus on evaluation and operational constraints.
+          </li>
+          <li>
+            <strong><span class="journey-period">2015 → 2022</span> - Data Engineering &amp; Cloud.</strong>
+            Designed multi-terabyte warehouses, lakes, Spark pipelines and analytics platforms
+            across AWS, Azure and Google Cloud.
+          </li>
+          <li>
+            <strong><span class="journey-period">2009 → 2015</span> - Database Engineering &amp; Administration.</strong>
+            Operated and optimized business-critical SQL Server, PostgreSQL and MongoDB systems,
+            including performance, availability and recovery.
+          </li>
+        </ul>
       </div>
     </section>
 
@@ -692,8 +617,9 @@
             <h2>Let’s work together on data and AI.</h2>
             <p>
               Have a project you would like to collaborate on, or need an experienced
-              consultant for a data or AI initiative? Get in touch to discuss the
-              challenge and how I can help.
+              consultant for a data or AI initiative? I also offer practical training
+              in AI, databases and data engineering. Get in touch to discuss your
+              project, consulting needs or training requirements.
             </p>
           </div>
           <div class="contact-links">
@@ -708,12 +634,8 @@
 
   <footer>
     <div class="wrap footer-row">
-      <div>
-        <span class="mono">&gt;_</span> datartha.com
-      </div>
-      <div>
-        <a class="accent-link" href="https://github.com/vinay-cg/datartha.github.io" target="_blank" rel="noreferrer">Source on GitHub</a>
-      </div>
+      <div>© 2026 Datartha. All rights reserved.</div>
+      <div>Designed with ❤️ From India</div>
     </div>
   </footer>
 </body>

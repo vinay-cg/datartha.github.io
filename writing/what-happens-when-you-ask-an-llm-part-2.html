@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="How next-token prediction and autoregressive decoding build an LLM response one token at a time." />
+  <meta name="theme-color" content="#f7f7f4" />
+  <link rel="icon" type="image/png" href="../assets/favicon-light.png" />
+  <link rel="apple-touch-icon" href="../assets/favicon-light.png" />
+  <meta property="og:title" content="What happens when you ask an LLM a question? Part 2" />
+  <meta property="og:description" content="How an LLM predicts, selects and adds tokens until the response is complete." />
+  <meta property="og:type" content="article" />
+  <meta property="article:section" content="AI" />
+  <meta property="og:url" content="https://datartha.com/writing/what-happens-when-you-ask-an-llm-part-2.html" />
+  <meta property="og:image" content="https://datartha.com/assets/blog/llm-inference/llm-inference-big-picture.png" />
+  <title>What happens when you ask an LLM a question? Part 2 - Datartha</title>
+  <link rel="stylesheet" href="../assets/article.css" />
+</head>
+
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="brand-logo" src="../assets/logo-mark.png" alt="" width="32" height="21" />
+        <span>datartha</span>
+      </a>
+      <a class="back" href="../blog/index.html">← All blog posts</a>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap">
+      <div class="kicker">LLM inference · Part 2 of 2</div>
+      <h1>
+        What happens when you ask an LLM a question?
+        <span class="part-title">Prediction, generation and stopping</span>
+      </h1>
+      <p class="dek">
+        Once the context is processed, the model begins a repeated prediction loop that
+        grows the response one token at a time.
+      </p>
+      <div class="meta">
+        <span>Vinay C G</span>
+        <time datetime="2026-01-22">22 January 2026</time>
+        <span class="tag">AI</span>
+        <span>4 minute read</span>
+      </div>
+      <aside class="series-banner">
+        <strong>This is Part 2 of a two-part series.</strong>
+        Start with
+        <a href="what-happens-when-you-ask-an-llm-part-1.html">Part 1: Context, tokens and attention</a>.
+      </aside>
+
+      <div class="body">
+        <h2>5. The model predicts what comes next</h2>
+        <p>
+          Once the context has been processed, the model needs to start generating the
+          answer. It does this by predicting the <strong>next token</strong>.
+        </p>
+        <div class="example">Current response: “A checkpoint is a...”</div>
+        <p>
+          The model calculates which tokens could reasonably come next and assigns
+          probabilities to them. For example:
+        </p>
+        <ul class="probabilities" aria-label="Illustrative next-token probabilities">
+          <li><strong>consistent</strong><span>64%</span></li>
+          <li><strong>checkpoint</strong><span>20%</span></li>
+          <li><strong>state</strong><span>10%</span></li>
+          <li><strong>database</strong><span>6%</span></li>
+        </ul>
+        <p>
+          These numbers are illustrative, but they show the basic idea. The model selects
+          the next token based on these probabilities and the decoding settings being used.
+        </p>
+
+        <figure class="wide-figure">
+          <img src="../assets/blog/llm-inference/llm-next-token-probabilities.png"
+               alt="Diagram showing illustrative probabilities for the next token after A checkpoint is a, with consistent ranked highest at 64 percent."
+               width="1536" height="1024" decoding="async" />
+          <figcaption>The model produces a probability distribution over possible next tokens.</figcaption>
+        </figure>
+
+        <h2>6. Predict, add, repeat</h2>
+        <p>
+          Suppose the model selects <strong>“consistent.”</strong> The response now becomes
+          “A checkpoint is a consistent...” That new token is added to the sequence. The model
+          then processes the updated sequence and predicts another token. Then another.
+        </p>
+        <div class="flow">Predict → Add → Predict → Add → Repeat</div>
+        <p>
+          This process is called <strong>autoregressive decoding</strong>. In simple terms,
+          the answer grows one token at a time.
+        </p>
+
+        <figure class="wide-figure">
+          <img src="../assets/blog/llm-inference/llm-autoregressive-loop.png"
+               alt="Circular autoregressive decoding diagram showing predict, select, append and reuse the updated context as the response grows one token at a time."
+               width="1536" height="1024" loading="lazy" decoding="async" />
+          <figcaption>Each selected token becomes part of the context for the next prediction.</figcaption>
+        </figure>
+
+        <h2>7. When does it stop?</h2>
+        <p>
+          The model keeps repeating this process until it reaches a stopping point. That
+          could happen because the model produces an end-of-response signal, reaches a token
+          limit or the application uses another stopping condition.
+        </p>
+        <p>
+          By this point, many individual token predictions have been combined into something
+          that looks like a complete answer. What we see is the final result of that repeated
+          process.
+        </p>
+
+        <figure class="wide-figure">
+          <img src="../assets/blog/llm-inference/llm-generation-stopping.png"
+               alt="Diagram showing generation stopping after an end-of-response token, maximum token limit or application-defined stopping condition."
+               width="1536" height="1024" loading="lazy" decoding="async" />
+          <figcaption>Generation continues until the model or application reaches a stopping condition.</figcaption>
+        </figure>
+
+        <h2>8. Putting it all together</h2>
+        <p>When you ask an LLM a question, you can think of the flow like this:</p>
+        <div class="flow">
+          Question → Context → Tokens → Attention &amp; processing → Next-token prediction → Add token → Repeat → Response
+        </div>
+        <p>
+          There is much more happening inside an LLM than this explanation covers. But this
+          is a useful mental model for understanding what happens during <strong>LLM
+          inference</strong>.
+        </p>
+
+        <figure class="wide-figure">
+          <img src="../assets/blog/llm-inference/llm-inference-big-picture.png"
+               alt="End-to-end LLM inference diagram showing context, tokenization, attention, next-token prediction, token selection, sequence update and the final response."
+               width="1536" height="1024" loading="lazy" decoding="async" />
+          <figcaption>The full inference loop: use context, predict a token, append it and repeat.</figcaption>
+        </figure>
+
+        <div class="closing">
+          <p>
+            <strong>Conclusion:</strong> An LLM does not write the whole answer at once. It
+            builds the response step by step, one token at a time.
+          </p>
+        </div>
+
+        <nav class="series-nav" aria-label="LLM inference series">
+          <a class="series-link" href="what-happens-when-you-ask-an-llm-part-1.html">
+            <small>Previous · Part 1</small>
+            ← Context, tokens and attention
+          </a>
+          <div class="series-spacer"></div>
+        </nav>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>© 2026 Datartha. All rights reserved.</div>
+      <div>Designed with Love ❤️ From India</div>
+    </div>
+  </footer>
+</body>
+</html>

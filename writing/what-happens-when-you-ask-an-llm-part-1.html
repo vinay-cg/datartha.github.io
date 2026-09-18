@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A clear introduction to how context, tokenization and attention prepare an LLM to answer a question." />
+  <meta name="theme-color" content="#f7f7f4" />
+  <link rel="icon" type="image/png" href="../assets/favicon-light.png" />
+  <link rel="apple-touch-icon" href="../assets/favicon-light.png" />
+  <meta property="og:title" content="What happens when you ask an LLM a question? Part 1" />
+  <meta property="og:description" content="How context, tokens and attention prepare an LLM to generate a response." />
+  <meta property="og:type" content="article" />
+  <meta property="article:section" content="AI" />
+  <meta property="og:url" content="https://datartha.com/writing/what-happens-when-you-ask-an-llm-part-1.html" />
+  <meta property="og:image" content="https://datartha.com/assets/blog/llm-inference/llm-inference-overview.png" />
+  <title>What happens when you ask an LLM a question? Part 1 - Datartha</title>
+  <link rel="stylesheet" href="../assets/article.css" />
+</head>
+
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="../index.html">
+        <img class="brand-logo" src="../assets/logo-mark.png" alt="" width="32" height="21" />
+        <span>datartha</span>
+      </a>
+      <a class="back" href="../blog/index.html">← All blog posts</a>
+    </div>
+  </header>
+
+  <main>
+    <article class="wrap">
+      <div class="kicker">LLM inference · Part 1 of 2</div>
+      <h1>
+        What happens when you ask an LLM a question?
+        <span class="part-title">Context, tokens and attention</span>
+      </h1>
+      <p class="dek">
+        Before an LLM can generate an answer, it must assemble the available context,
+        turn text into tokens and work out which parts matter most.
+      </p>
+      <div class="meta">
+        <span>Vinay C G</span>
+        <time datetime="2026-01-08">08 January 2026</time>
+        <span class="tag">AI</span>
+        <span>4 minute read</span>
+      </div>
+      <aside class="series-banner">
+        <strong>This is Part 1 of a two-part series.</strong>
+        Continue with
+        <a href="what-happens-when-you-ask-an-llm-part-2.html">Part 2: Prediction, generation and stopping</a>.
+      </aside>
+
+      <div class="body">
+        <h2>1. What happens when you ask an LLM a question?</h2>
+        <p>
+          When we type a question into an LLM, it looks like a simple question-and-answer
+          process. Behind the scenes, the model goes through several steps before we see
+          the response.
+        </p>
+        <p>
+          At a high level, it takes the available context, breaks the text into tokens,
+          processes those tokens and starts predicting what should come next. The important
+          part is this: <strong>the full answer is not created at once. It is built one token
+          at a time.</strong>
+        </p>
+
+        <figure class="wide-figure">
+          <img src="../assets/blog/llm-inference/llm-inference-overview.png"
+               alt="Overview of an LLM turning a user question into a response through context, tokenization, attention, next-token prediction and autoregressive decoding."
+               width="1536" height="1024" decoding="async" />
+          <figcaption>The complete inference flow, from the user’s question to the final response.</figcaption>
+        </figure>
+
+        <h2>2. It starts with context</h2>
+        <p>
+          Before the model can generate an answer, it needs context. This includes your
+          question, previous messages in the conversation, instructions given to the model
+          and any other information provided to it.
+        </p>
+        <div class="example"><strong>Example prompt:</strong> “Explain checkpoint in Oracle”</div>
+        <p>
+          That question becomes part of the context the model uses to generate its answer.
+          Simply put, <strong>context is the information the model has available while
+          answering you.</strong>
+        </p>
+
+        <figure class="wide-figure">
+          <img src="../assets/blog/llm-inference/llm-context-flow.png"
+               alt="Diagram showing an LLM context assembled from the user prompt, previous messages, model instructions and other available information."
+               width="1536" height="1024" loading="lazy" decoding="async" />
+          <figcaption>The model generates its response using all relevant context available to it.</figcaption>
+        </figure>
+
+        <h2>3. Text becomes tokens</h2>
+        <p>
+          LLMs do not work directly with sentences in the same way we read them. The text
+          is first broken into smaller pieces called <strong>tokens</strong>.
+        </p>
+        <div class="example">Explain &nbsp;|&nbsp; checkpoint &nbsp;|&nbsp; in &nbsp;|&nbsp; Oracle</div>
+        <p>
+          The exact split depends on the tokenizer used by the model. A token can be a full
+          word, part of a word, punctuation or another small piece of text. These tokens are
+          what the model processes.
+        </p>
+
+        <figure class="wide-figure">
+          <img src="../assets/blog/llm-inference/llm-tokenization.png"
+               alt="Tokenization diagram splitting the sentence Explain checkpoint in Oracle into four illustrative tokens."
+               width="1536" height="1024" loading="lazy" decoding="async" />
+          <figcaption>An illustrative token split; the exact result depends on the model’s tokenizer.</figcaption>
+        </figure>
+
+        <h2>4. Attention helps connect the context</h2>
+        <p>
+          Now the model needs to understand how the tokens relate to each other. This is
+          where <strong>attention</strong> plays an important role. In “Explain checkpoint
+          in Oracle,” the words “checkpoint” and “Oracle” are closely related to what the
+          user is asking.
+        </p>
+        <p>
+          Attention helps the model assign different importance to different parts of the
+          available context while processing the text. This helps it use the right information
+          at the right time.
+        </p>
+
+        <figure class="wide-figure">
+          <img src="../assets/blog/llm-inference/llm-attention.png"
+               alt="Self-attention diagram showing relationships between the tokens Explain, checkpoint, in and Oracle, with a stronger connection between checkpoint and Oracle."
+               width="1536" height="1024" loading="lazy" decoding="async" />
+          <figcaption>Attention helps determine which parts of the available context matter for each token.</figcaption>
+        </figure>
+
+        <div class="closing">
+          <p>
+            <strong>Part 1 takeaway:</strong> Context, tokens and attention prepare the model
+            to generate - but the answer has not been written yet. Part 2 follows the prediction
+            loop that builds it.
+          </p>
+        </div>
+
+        <nav class="series-nav" aria-label="LLM inference series">
+          <div class="series-spacer"></div>
+          <a class="series-link next" href="what-happens-when-you-ask-an-llm-part-2.html">
+            <small>Next · Part 2</small>
+            Prediction, generation and stopping →
+          </a>
+        </nav>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div>© 2026 Datartha. All rights reserved.</div>
+      <div>Designed with Love ❤️ From India</div>
+    </div>
+  </footer>
+</body>
+</html>
