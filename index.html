@@ -114,7 +114,7 @@
     }
 
     .hero {
-      padding: 58px 0 64px;
+      padding: 34px 0 58px;
       display: grid;
       grid-template-columns: 1.45fr .75fr;
       gap: 64px;
@@ -290,6 +290,57 @@
       border-top: 1px solid var(--line);
     }
 
+    .course-feature {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 42px;
+      padding: clamp(26px, 5vw, 44px);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .course-feature h3 {
+      margin: 0;
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      line-height: 1.2;
+    }
+
+    .course-feature p {
+      margin: 14px 0 0;
+      color: var(--muted);
+    }
+
+    .course-feature .hero-actions {
+      margin-top: 24px;
+    }
+
+    .course-facts {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 0;
+    }
+
+    .course-facts div {
+      padding: 15px;
+      background: var(--accent-soft);
+      border-radius: 10px;
+    }
+
+    .course-facts dt {
+      color: var(--accent);
+      font: 700 .78rem/1.4 "SFMono-Regular", Consolas, monospace;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .course-facts dd {
+      margin: 5px 0 0;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
     .post {
       display: grid;
       grid-template-columns: 150px 1fr auto;
@@ -351,22 +402,31 @@
 
     .contact-panel {
       display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 48px;
-      align-items: end;
-      background: var(--code);
-      color: white;
+      grid-template-columns: 1fr .8fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .contact-panel > div:first-child,
+    .contact-links {
+      padding: clamp(26px, 4vw, 38px);
       border-radius: var(--radius);
-      padding: clamp(28px, 5vw, 48px);
+    }
+
+    .contact-panel > div:first-child {
+      background: var(--surface);
+      border: 1px solid var(--line);
     }
 
     .contact-panel h2 {
       margin: 0;
+      font-size: clamp(1.65rem, 3vw, 2.25rem);
+      line-height: 1.15;
     }
 
     .contact-panel p {
       margin: 16px 0 0;
-      color: #cbd5e1;
+      color: var(--muted);
       max-width: 620px;
     }
 
@@ -374,18 +434,36 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      justify-content: center;
       gap: 12px;
+      background: var(--accent-soft);
+    }
+
+    .contact-links h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      color: var(--text);
     }
 
     .contact-link {
-      color: white;
-      border-bottom: 1px solid rgba(255,255,255,.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--accent);
+      border-bottom: 1px solid rgba(36, 87, 214, .3);
       padding-bottom: 3px;
       font-weight: 650;
     }
 
+    .contact-icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 18px;
+      color: currentColor;
+    }
+
     .contact-link:hover {
-      border-color: white;
+      border-color: var(--accent);
     }
 
     .principle {
@@ -430,12 +508,13 @@
     @media (max-width: 760px) {
       .hero,
       .section-head,
-      .contact-panel {
+      .contact-panel,
+      .course-feature {
         grid-template-columns: 1fr;
       }
 
       .hero {
-        padding-top: 42px;
+        padding-top: 28px;
         gap: 34px;
       }
 
@@ -459,6 +538,10 @@
         font-size: .8rem;
       }
 
+      .course-facts {
+        grid-template-columns: 1fr;
+      }
+
       section {
         padding: 58px 0;
       }
@@ -476,6 +559,7 @@
 
       <nav class="nav-links" aria-label="Primary">
         <a href="blog/index.html">Blog</a>
+        <a href="course/index.html">Course</a>
         <a href="#about">About</a>
         <a href="#experience">Journey</a>
         <a href="#connect">Connect</a>
@@ -551,10 +635,58 @@
       </div>
     </section>
 
+    <section id="course">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="section-kicker">02 / Course</div>
+          <div>
+            <h2>AI for Data Professionals.</h2>
+            <p class="lead">
+              A practical, instructor-led program for using Generative AI,
+              AI-assisted engineering and agentic AI in real data work.
+            </p>
+          </div>
+        </div>
+
+        <div class="course-feature">
+          <div>
+            <h3>Move from AI awareness to practical AI capability.</h3>
+            <p>
+              Learn to apply AI to SQL, scripting, troubleshooting, analysis and
+              documentation, then progress to coding agents, RAG, tools, automation
+              and enterprise AI system design.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="course/index.html">Explore the course</a>
+            </div>
+          </div>
+
+          <dl class="course-facts" aria-label="Course highlights">
+            <div>
+              <dt>Delivery</dt>
+              <dd>Live and instructor-led</dd>
+            </div>
+            <div>
+              <dt>Learning</dt>
+              <dd>Practical and hands-on</dd>
+            </div>
+            <div>
+              <dt>Approach</dt>
+              <dd>Vendor-neutral</dd>
+            </div>
+            <div>
+              <dt>Outcome</dt>
+              <dd>Project-based certificate</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
     <section id="about">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-kicker">02 / About</div>
+          <div class="section-kicker">03 / About</div>
           <div>
             <h2>Technology makes more sense when you understand what sits underneath it.</h2>
             <p class="lead">
@@ -579,7 +711,7 @@
     <section id="experience">
       <div class="wrap">
         <div class="section-head">
-          <div class="section-kicker">03 / Journey</div>
+          <div class="section-kicker">04 / Journey</div>
           <div>
             <h2>From database internals to AI systems.</h2>
             <p class="lead">
@@ -623,9 +755,32 @@
             </p>
           </div>
           <div class="contact-links">
-            <a class="contact-link" href="mailto:vinay.c.g.k@gmail.com">vinay.c.g.k@gmail.com ↗</a>
-            <a class="contact-link" href="https://github.com/vinay-cg" target="_blank" rel="me noreferrer">github.com/vinay-cg ↗</a>
-            <a class="contact-link" href="https://www.linkedin.com/in/vinay-c-g/" target="_blank" rel="me noreferrer">linkedin.com/in/vinay-c-g ↗</a>
+            <h3>Get in touch</h3>
+            <a class="contact-link" href="mailto:vinay.c.g.k@gmail.com">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                <path d="m3 7 9 6 9-6"></path>
+              </svg>
+              vinay.c.g.k@gmail.com ↗
+            </a>
+            <a class="contact-link" href="https://github.com/vinay-cg" target="_blank" rel="me noreferrer">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.335-1.756-1.335-1.756-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 0 1 3.003-.404c1.02.005 2.045.138 3.003.404 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
+              </svg>
+              github.com/vinay-cg ↗
+            </a>
+            <a class="contact-link" href="https://www.linkedin.com/in/vinay-c-g/" target="_blank" rel="me noreferrer">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.119 20.452H3.555V9H7.12v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path>
+              </svg>
+              linkedin.com/in/vinay-c-g ↗
+            </a>
+            <a class="contact-link" href="https://x.com/vinay_c_g" target="_blank" rel="me noreferrer">
+              <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.608-9.837L0 1.154h7.594l5.243 6.932 6.064-6.933Zm-1.293 19.491h2.039L6.486 3.24H4.298l13.31 17.404Z"></path>
+              </svg>
+              x.com/vinay_c_g ↗
+            </a>
           </div>
         </div>
       </div>
