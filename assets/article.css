@@ -54,6 +54,10 @@ header {
   backdrop-filter: blur(10px);
 }
 
+header a {
+  text-decoration: none;
+}
+
 .nav {
   min-height: 66px;
   display: flex;
@@ -155,6 +159,7 @@ header {
   color: var(--muted);
   font-size: .9rem;
   font-weight: 600;
+  text-decoration: none;
 }
 
 .mobile-nav-menu a:hover {

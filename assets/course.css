@@ -199,22 +199,22 @@ h1 {
 }
 
 .button {
-  min-height: 46px;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 20px;
+  padding: 0 18px;
   border: 1px solid var(--text);
   border-radius: 999px;
   font-size: .9rem;
-  font-weight: 700;
+  font-weight: 650;
   transition: background .15s ease, color .15s ease, border-color .15s ease;
 }
 
 .button.primary {
   border-color: var(--text);
   background: var(--text);
-  color: white;
+  color: var(--surface);
 }
 
 .button:hover {
