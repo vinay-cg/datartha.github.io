@@ -283,7 +283,13 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  margin-top: 28px;
+  margin-top: 12px;
+}
+
+.audience-title {
+  margin: 30px 0 0;
+  font-size: 1.05rem;
+  color: var(--text);
 }
 
 .audience span {
