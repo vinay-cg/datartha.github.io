@@ -31,6 +31,11 @@ a:focus-visible {
   border-radius: 3px;
 }
 
+.mobile-nav summary:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 4px;
+}
+
 .wrap {
   width: min(var(--max), calc(100% - 40px));
   margin: 0 auto;
@@ -95,6 +100,66 @@ header {
 
 .nav-links a:hover {
   color: var(--text);
+}
+
+.mobile-nav {
+  display: none;
+  position: relative;
+}
+
+.mobile-nav summary {
+  width: 42px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  cursor: pointer;
+  list-style: none;
+}
+
+.mobile-nav summary::-webkit-details-marker { display: none; }
+
+.menu-icon {
+  width: 20px;
+  display: grid;
+  gap: 4px;
+}
+
+.menu-icon span {
+  display: block;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--text);
+}
+
+.mobile-nav-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: min(250px, calc(100vw - 40px));
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 9px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(24, 49, 83, .14);
+}
+
+.mobile-nav-menu a {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: .9rem;
+  font-weight: 600;
+}
+
+.mobile-nav-menu a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 
 header .wrap {
@@ -502,18 +567,16 @@ footer {
 
 @media (max-width: 760px) {
   .nav {
-    min-height: auto;
-    padding: 14px 0 12px;
-    flex-wrap: wrap;
-    gap: 8px 20px;
+    min-height: 62px;
+    padding: 10px 0;
   }
 
   .nav-links {
-    width: 100%;
-    gap: 16px;
-    overflow-x: auto;
-    padding-bottom: 2px;
-    font-size: .8rem;
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
   }
 
   .contact-panel {
